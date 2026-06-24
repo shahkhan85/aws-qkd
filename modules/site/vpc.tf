@@ -155,27 +155,15 @@ module "subnet_trust" {
   global_tags = var.global_tags
 }
 
-### NAT GATEWAY (on mgmt subnet for outbound: bootstrap S3, KME API, updates) ###
-
-module "natgw" {
-  source = "github.com/PaloAltoNetworks/terraform-aws-swfw-modules//modules/nat_gateway_set?ref=main"
-
-  subnets = module.subnet_mgmt.subnets
-  nat_gateway_names = {
-    "${var.az}" = "${var.name_prefix}${var.site_name}-natgw"
-  }
-  global_tags = var.global_tags
-}
-
 ### ROUTES ###
 
-# Management subnet: default route via NAT Gateway (for S3 bootstrap, KME API, updates)
+# Management subnet: default route via IGW (mgmt ENI has EIP for direct internet access)
 resource "aws_route" "mgmt_default" {
   for_each = module.subnet_mgmt.unique_route_table_ids
 
   route_table_id         = each.value
   destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id         = module.natgw.next_hop_set.ids[var.az]
+  gateway_id             = module.vpc.internet_gateway.id
 }
 
 # Untrust subnet: default route via IGW (for EIP-based IPsec tunnel endpoints)

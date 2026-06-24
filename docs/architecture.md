@@ -37,7 +37,7 @@
 
 | Subnet | Default Route | Purpose |
 |--------|---------------|---------|
-| mgmt | NAT Gateway | Outbound for bootstrap S3, KME API, PAN-OS updates |
+| mgmt | Internet Gateway | Outbound via EIP for bootstrap S3, KME API, PAN-OS updates |
 | untrust | Internet Gateway | EIP-based IPsec tunnel termination |
 | trust | None (local only) | Internal traffic stays within VPC |
 

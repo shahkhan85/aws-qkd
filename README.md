@@ -92,12 +92,11 @@ Uses [PaloAltoNetworks/terraform-aws-swfw-modules](https://github.com/PaloAltoNe
 - `subnet_set` — Subnets with route tables
 - `vmseries` — VM-Series EC2 instance
 - `bootstrap` — S3 bootstrap bucket + IAM
-- `nat_gateway_set` — NAT Gateway
 
 ## Security Groups
 
 | Group | Inbound Rules |
 |-------|--------------|
-| **mgmt** | SSH (22), HTTPS (443) from allowed CIDRs; HTTPS (443) from mgmt subnet (KME API) |
-| **untrust** | IKE (UDP 500), NAT-T (UDP 4500), ESP (protocol 50) — for IPsec |
-| **trust** | All traffic from VPC CIDR |
+| **mgmt** | SSH (22), HTTPS (443) from allowed CIDRs; HTTPS (443) from mgmt subnet (KME API). Routes via IGW (EIP on mgmt ENI). |
+| **untrust** | IKE (UDP 500), NAT-T (UDP 4500), ESP (protocol 50) — for IPsec. Routes via IGW. |
+| **trust** | All traffic from VPC CIDR. No default route (local only). |
