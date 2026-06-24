@@ -64,7 +64,7 @@ variable "site_b_az" {
 variable "vmseries_version" {
   description = "PAN-OS version for VM-Series (must be 12.1+ for QKD support)"
   type        = string
-  default     = "12.1.1"
+  default     = "12.1.7"
 }
 
 variable "vmseries_instance_type" {
