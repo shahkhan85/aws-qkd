@@ -19,5 +19,5 @@ site_b_vpc_cidr = "10.200.0.0/16"
 site_b_az       = "us-east-1b"
 
 # --- VM-Series ---
-vmseries_version       = "12.1.1"             # PAN-OS 12.1+ required for QKD/ETSI 014
+vmseries_version       = "12.1.7"             # PAN-OS 12.1+ required for QKD/ETSI 014
 vmseries_instance_type = "m5.xlarge"
