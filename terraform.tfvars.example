@@ -1,0 +1,23 @@
+# --- General ---
+region      = "us-east-1"
+name_prefix = "qkd-"
+
+global_tags = {
+  Project     = "qkd-vpn"
+  Environment = "lab"
+}
+
+ssh_key_name      = "my-keypair"              # Must exist in your AWS account
+allowed_mgmt_cidrs = ["203.0.113.0/24"]       # Your public IP range for management access
+
+# --- Site A ---
+site_a_vpc_cidr = "10.100.0.0/16"
+site_a_az       = "us-east-1a"
+
+# --- Site B ---
+site_b_vpc_cidr = "10.200.0.0/16"
+site_b_az       = "us-east-1b"
+
+# --- VM-Series ---
+vmseries_version       = "12.1.1"             # PAN-OS 12.1+ required for QKD/ETSI 014
+vmseries_instance_type = "m5.xlarge"

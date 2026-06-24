@@ -1,0 +1,32 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+.terraform.lock.hcl
+terraform.tfvars
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# AWS credentials / keys
+*.pem
+*.key
+
+# Reference modules (local clone)
+.ref-modules/
+
+# Terraform binary
+terraform_*/
+
+# Conversion script (not needed by customer)
+convert_to_docx.py
+
+# Claude
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
